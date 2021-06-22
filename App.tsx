@@ -1,21 +1,36 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react'
+import AppLoading from "expo-app-loading";
+
+import {ThemeProvider} from 'styled-components'
+
+import {
+  Rajdhani_700Bold,
+  Rajdhani_500Medium
+} from '@expo-google-fonts/rajdhani'
+import {
+  useFonts,
+  Inter_400Regular,
+  Inter_500Medium
+} from '@expo-google-fonts/inter'
+
+import theme from './src/global/styles/theme'
+
+import {SignIn} from './src/screens/SignIn'
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+  const [fontsLoaded] = useFonts({
+    Rajdhani_500Medium,
+    Rajdhani_700Bold,
+    Inter_400Regular,
+    Inter_500Medium
+  })
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+  if(!fontsLoaded) {
+    return <AppLoading />
+  }
+  return(
+    <ThemeProvider theme={theme}>
+      <SignIn />
+    </ThemeProvider>
+  )
+}
