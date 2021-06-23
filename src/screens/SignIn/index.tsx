@@ -1,35 +1,35 @@
-import React from 'react'
+import React from "react";
+import { useNavigation } from "@react-navigation/native";
+import { TouchableOpacity } from "react-native";
+import { Container, Text, Image, Content, SubText } from "./styles";
 
-import {
-  Container,
-  Text, 
-  Image,
-  Content, 
-  SubText,
-  StatusBar
-} from './styles'
-
-import IllustrationImg from '../../assets/illustration.png'
-import { ButtonIcon } from '../../components/ButtonIcon'
+import IllustrationImg from "../../assets/illustration.png";
+import { ButtonIcon } from "../../components/ButtonIcon";
 
 export function SignIn() {
-  
-  return(
+  const navigation = useNavigation();
+
+  function handleSignIn() {
+    navigation.navigate("Home");
+    console.log("click");
+  }
+  return (
     <Container>
-      <StatusBar />
-      <Image source={IllustrationImg} resizeMode='stretch'/>
+      <Image source={IllustrationImg} resizeMode="stretch" />
       <Content>
         <Text>
-          Conecte-se {`\n`}
-          e organize suas {`\n`}
+          Conecte-se {`\n`}e organize suas {`\n`}
           jogatinas
         </Text>
-        <SubText >
+        <SubText>
           Crie grupos para jogar seus games {`\n`}
           favoritos com seus amigos
         </SubText>
-        <ButtonIcon title='Entrar com Discord' activeOpacity={0.7}/>
+
+        <TouchableOpacity onPress={handleSignIn}>
+          <ButtonIcon title="Entrar com Discord" onPress={handleSignIn} />
+        </TouchableOpacity>
       </Content>
-    </Container> 
-  )
+    </Container>
+  );
 }
